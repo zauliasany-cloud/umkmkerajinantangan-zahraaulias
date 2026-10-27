@@ -1,0 +1,2368 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KriyaJatim — Kerajinan Tangan Khas Jawa Timur</title>
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.1.0/fonts/remixicon.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/fontsource/fonts/playfair-display@latest/latin-400-normal.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/fontsource/fonts/playfair-display@latest/latin-700-normal.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/fontsource/fonts/playfair-display@latest/latin-900-normal.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/fontsource/fonts/inter@latest/latin-400-normal.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/fontsource/fonts/inter@latest/latin-500-normal.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/fontsource/fonts/inter@latest/latin-600-normal.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/fontsource/fonts/inter@latest/latin-700-normal.css" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --primary: #8B2635;
+            --primary-dark: #6B1D28;
+            --secondary: #D4A017;
+            --secondary-light: #F4C430;
+            --accent: #2F5233;
+            --accent-light: #4A7C4E;
+            --cream: #FAF3E7;
+            --cream-dark: #F0E4CC;
+            --brown: #3E2723;
+            --brown-light: #5D4037;
+            --white: #FFFBF5;
+            --text: #2B1810;
+            --text-light: #6B5548;
+        }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--cream);
+            color: var(--text);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: var(--cream); }
+        ::-webkit-scrollbar-thumb { background: var(--primary); border-radius: 4px; }
+
+        h1, h2, h3, h4 { font-family: 'Playfair Display', serif; font-weight: 700; }
+
+        /* NAVBAR */
+        .navbar {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            padding: 1.2rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            transition: all 0.4s ease;
+        }
+
+        .navbar.scrolled {
+            background: rgba(250, 243, 231, 0.97);
+            backdrop-filter: blur(20px);
+            padding: 0.8rem 5%;
+            box-shadow: 0 4px 30px rgba(62, 39, 35, 0.08);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            text-decoration: none;
+            color: var(--brown);
+        }
+
+        .logo-icon {
+            width: 44px; height: 44px;
+            background: var(--primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--secondary-light);
+            font-size: 1.3rem;
+            box-shadow: 0 4px 15px rgba(139, 38, 53, 0.3);
+        }
+
+        .logo-text {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.4rem;
+            font-weight: 700;
+            line-height: 1;
+        }
+
+        .logo-text .sub {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.65rem;
+            color: var(--primary);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            font-weight: 600;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2.2rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--brown);
+            font-size: 0.9rem;
+            font-weight: 500;
+            position: relative;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:not(.nav-cta)::after {
+            content: '';
+            position: absolute;
+            bottom: -5px; left: 0;
+            width: 0; height: 2px;
+            background: var(--primary);
+            transition: width 0.3s;
+        }
+
+        .nav-links a:not(.nav-cta):hover { color: var(--primary); }
+        .nav-links a:not(.nav-cta):hover::after { width: 100%; }
+
+        .nav-cta {
+            background: var(--primary);
+            color: var(--white) !important;
+            padding: 0.7rem 1.5rem;
+            border-radius: 50px;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            font-weight: 600;
+        }
+
+        .nav-cta:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(139, 38, 53, 0.35);
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            z-index: 1001;
+        }
+
+        .hamburger span {
+            width: 26px; height: 2.5px;
+            background: var(--brown);
+            border-radius: 2px;
+            transition: all 0.3s;
+        }
+
+        .hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 6px); }
+        .hamburger.active span:nth-child(2) { opacity: 0; }
+        .hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -6px); }
+
+        /* HERO */
+        .hero {
+            min-height: 100vh;
+            padding: 8rem 5% 4rem;
+            display: grid;
+            grid-template-columns: 1.1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(135deg, var(--cream) 0%, var(--cream-dark) 100%);
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0; right: 0;
+            width: 50%; height: 100%;
+            background: radial-gradient(circle at 70% 50%, rgba(139, 38, 53, 0.08) 0%, transparent 60%);
+            pointer-events: none;
+        }
+
+        .hero-bg-text {
+            position: absolute;
+            bottom: 5%;
+            left: 0;
+            width: 100%;
+            font-family: 'Playfair Display', serif;
+            font-size: 18vw;
+            font-weight: 900;
+            color: var(--brown);
+            opacity: 0.03;
+            white-space: nowrap;
+            pointer-events: none;
+            line-height: 1;
+        }
+
+        .hero-content { position: relative; z-index: 2; }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: var(--white);
+            border: 1px solid var(--cream-dark);
+            padding: 0.5rem 1.2rem;
+            border-radius: 50px;
+            font-size: 0.82rem;
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: 1.8rem;
+            animation: fadeUp 0.8s ease;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.04);
+        }
+
+        .hero-badge i {
+            color: var(--secondary);
+            font-size: 1rem;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 5vw, 4.2rem);
+            line-height: 1.1;
+            color: var(--brown);
+            margin-bottom: 1.5rem;
+            animation: fadeUp 0.8s ease 0.1s both;
+        }
+
+        .hero h1 .accent {
+            color: var(--primary);
+            font-style: italic;
+            position: relative;
+            display: inline-block;
+        }
+
+        .hero h1 .accent::after {
+            content: '';
+            position: absolute;
+            bottom: 5px; left: 0;
+            width: 100%; height: 10px;
+            background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 12'><path d='M2 8 Q 50 2, 100 6 T 198 4' stroke='%23D4A017' stroke-width='3' fill='none' stroke-linecap='round'/></svg>") no-repeat;
+            background-size: contain;
+            z-index: -1;
+        }
+
+        .hero-desc {
+            font-size: 1.05rem;
+            color: var(--text-light);
+            max-width: 500px;
+            margin-bottom: 2rem;
+            animation: fadeUp 0.8s ease 0.3s both;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin-bottom: 3rem;
+            animation: fadeUp 0.8s ease 0.5s both;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            text-decoration: none;
+            cursor: pointer;
+            border: none;
+            transition: all 0.3s;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: var(--white);
+            box-shadow: 0 8px 25px rgba(139, 38, 53, 0.3);
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-dark);
+            transform: translateY(-3px);
+            box-shadow: 0 12px 30px rgba(139, 38, 53, 0.4);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--brown);
+            border: 2px solid var(--brown);
+        }
+
+        .btn-outline:hover {
+            background: var(--brown);
+            color: var(--white);
+            transform: translateY(-3px);
+        }
+
+        .hero-stats {
+            display: flex;
+            gap: 2.5rem;
+            animation: fadeUp 0.8s ease 0.7s both;
+        }
+
+        .stat-item .num {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary);
+            line-height: 1;
+        }
+
+        .stat-item .label {
+            font-size: 0.82rem;
+            color: var(--text-light);
+            margin-top: 0.3rem;
+        }
+
+        /* Hero Visual */
+        .hero-visual {
+            position: relative;
+            height: 580px;
+            animation: fadeIn 1.2s ease 0.4s both;
+        }
+
+        .hero-main-img {
+            position: absolute;
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            width: 420px; height: 420px;
+            border-radius: 50%;
+            background: radial-gradient(circle, var(--white) 0%, var(--cream-dark) 100%);
+            box-shadow: 0 30px 80px rgba(62, 39, 35, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: floatY 5s ease-in-out infinite;
+            overflow: hidden;
+        }
+
+        .hero-main-img svg { width: 90%; height: 90%; }
+
+        @keyframes floatY {
+            0%, 100% { transform: translate(-50%, -50%); }
+            50% { transform: translate(-50%, -55%); }
+        }
+
+        .hero-chip {
+            position: absolute;
+            background: var(--white);
+            border-radius: 20px;
+            padding: 0.9rem 1.2rem;
+            box-shadow: 0 15px 40px rgba(62, 39, 35, 0.12);
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+
+        .chip-1 { top: 8%; left: 0; animation: floatY 4s ease-in-out infinite; }
+        .chip-2 { bottom: 12%; right: 0; animation: floatY 4s ease-in-out infinite 1.5s; }
+        .chip-3 { top: 50%; right: -5%; animation: floatY 4s ease-in-out infinite 0.8s; }
+
+        .chip-icon {
+            width: 42px; height: 42px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            color: var(--white);
+        }
+
+        .chip-icon.red { background: var(--primary); }
+        .chip-icon.yellow { background: var(--secondary); }
+        .chip-icon.green { background: var(--accent); }
+
+        .chip-text h4 {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: var(--brown);
+        }
+
+        .chip-text p {
+            font-size: 0.72rem;
+            color: var(--text-light);
+        }
+
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* MARQUEE */
+        .marquee {
+            background: var(--brown);
+            color: var(--cream);
+            padding: 1.5rem 0;
+            overflow: hidden;
+        }
+
+        .marquee-track {
+            display: flex;
+            gap: 3rem;
+            animation: scroll 40s linear infinite;
+            white-space: nowrap;
+        }
+
+        .marquee-item {
+            display: flex;
+            align-items: center;
+            gap: 3rem;
+            font-family: 'Playfair Display', serif;
+            font-size: 1.4rem;
+            font-style: italic;
+        }
+
+        .marquee-item .star {
+            color: var(--secondary);
+            font-size: 1rem;
+        }
+
+        @keyframes scroll {
+            from { transform: translateX(0); }
+            to { transform: translateX(-50%); }
+        }
+
+        /* SECTION GENERAL */
+        .section { padding: 7rem 5%; }
+
+        .section-head {
+            text-align: center;
+            max-width: 650px;
+            margin: 0 auto 4rem;
+        }
+
+        .section-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.82rem;
+            font-weight: 600;
+            color: var(--primary);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 1rem;
+        }
+
+        .section-tag::before, .section-tag::after {
+            content: '';
+            width: 30px; height: 1.5px;
+            background: var(--primary);
+        }
+
+        .section-head h2 {
+            font-size: clamp(2rem, 4vw, 3.2rem);
+            line-height: 1.15;
+            color: var(--brown);
+            margin-bottom: 1rem;
+        }
+
+        .section-head h2 .accent {
+            color: var(--primary);
+            font-style: italic;
+        }
+
+        .section-head p {
+            color: var(--text-light);
+            font-size: 1rem;
+        }
+
+        /* ABOUT */
+        .about { background: var(--white); }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 5rem;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .about-visual {
+            position: relative;
+            height: 550px;
+        }
+
+        .about-img-main {
+            position: absolute;
+            top: 0; left: 0;
+            width: 70%; height: 75%;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 25px 60px rgba(62, 39, 35, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .about-img-main svg { width: 70%; height: 70%; }
+
+        .about-img-small {
+            position: absolute;
+            bottom: 0; right: 0;
+            width: 55%; height: 50%;
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-light) 100%);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 25px 60px rgba(62, 39, 35, 0.2);
+            border: 8px solid var(--white);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .about-img-small svg { width: 75%; height: 75%; }
+
+        .about-badge {
+            position: absolute;
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            width: 130px; height: 130px;
+            background: var(--brown);
+            border-radius: 50%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: var(--cream);
+            z-index: 3;
+            box-shadow: 0 15px 40px rgba(62, 39, 35, 0.35);
+            border: 4px solid var(--secondary);
+        }
+
+        .about-badge .num {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.8rem;
+            font-weight: 900;
+            line-height: 1;
+            color: var(--secondary);
+        }
+
+        .about-badge .txt {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-top: 0.3rem;
+            font-weight: 600;
+        }
+
+        .about-text h2 {
+            font-size: clamp(2rem, 3.5vw, 2.8rem);
+            line-height: 1.2;
+            color: var(--brown);
+            margin-bottom: 1.5rem;
+        }
+
+        .about-text h2 .accent {
+            color: var(--primary);
+            font-style: italic;
+        }
+
+        .about-text > p {
+            color: var(--text-light);
+            margin-bottom: 1.2rem;
+            font-size: 1rem;
+        }
+
+        .about-features {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.2rem;
+            margin-top: 2rem;
+        }
+
+        .feature-item {
+            display: flex;
+            gap: 0.8rem;
+            align-items: flex-start;
+            padding: 1rem;
+            background: var(--cream);
+            border-radius: 15px;
+            transition: all 0.3s;
+        }
+
+        .feature-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.06);
+        }
+
+        .feature-icon {
+            width: 42px; height: 42px;
+            background: var(--primary);
+            color: var(--white);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            flex-shrink: 0;
+        }
+
+        .feature-item h4 {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: var(--brown);
+            margin-bottom: 0.2rem;
+        }
+
+        .feature-item p {
+            font-size: 0.82rem;
+            color: var(--text-light);
+            margin: 0;
+        }
+
+        /* PRODUCTS */
+        .products { background: var(--cream); }
+
+        .products-filter {
+            display: flex;
+            justify-content: center;
+            gap: 0.8rem;
+            margin-bottom: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            padding: 0.6rem 1.5rem;
+            background: transparent;
+            border: 1.5px solid var(--cream-dark);
+            border-radius: 50px;
+            font-size: 0.88rem;
+            font-weight: 600;
+            color: var(--brown);
+            cursor: pointer;
+            transition: all 0.3s;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .filter-btn.active, .filter-btn:hover {
+            background: var(--primary);
+            color: var(--white);
+            border-color: var(--primary);
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .product-card {
+            background: var(--white);
+            border-radius: 24px;
+            overflow: hidden;
+            transition: all 0.4s ease;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 25px 60px rgba(62, 39, 35, 0.15);
+        }
+
+        .product-img {
+            height: 280px;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .product-img svg {
+            width: 85%; height: 85%;
+            transition: transform 0.5s ease;
+        }
+
+        .product-card:hover .product-img svg {
+            transform: scale(1.08);
+        }
+
+        .product-tag {
+            position: absolute;
+            top: 1rem; left: 1rem;
+            background: var(--white);
+            padding: 0.35rem 0.9rem;
+            border-radius: 50px;
+            font-size: 0.72rem;
+            font-weight: 700;
+            color: var(--primary);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            z-index: 2;
+        }
+
+        .product-location {
+            position: absolute;
+            top: 1rem; right: 1rem;
+            background: rgba(62, 39, 35, 0.85);
+            color: var(--white);
+            padding: 0.35rem 0.8rem;
+            border-radius: 50px;
+            font-size: 0.72rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+            z-index: 2;
+        }
+
+        .product-wishlist {
+            position: absolute;
+            bottom: 1rem; right: 1rem;
+            width: 40px; height: 40px;
+            background: var(--white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            border: none;
+            color: var(--brown);
+            font-size: 1.1rem;
+            transition: all 0.3s;
+            z-index: 2;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        .product-wishlist:hover, .product-wishlist.active {
+            background: var(--primary);
+            color: var(--white);
+        }
+
+        .product-info {
+            padding: 1.5rem;
+        }
+
+        .product-cat {
+            font-size: 0.72rem;
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            font-weight: 700;
+            margin-bottom: 0.4rem;
+        }
+
+        .product-info h3 {
+            font-size: 1.25rem;
+            color: var(--brown);
+            margin-bottom: 0.5rem;
+        }
+
+        .product-info .desc {
+            font-size: 0.85rem;
+            color: var(--text-light);
+            margin-bottom: 1rem;
+            line-height: 1.5;
+        }
+
+        .product-bottom {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 1rem;
+            border-top: 1px dashed var(--cream-dark);
+        }
+
+        .product-price {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .product-price .currency {
+            font-size: 0.85rem;
+            color: var(--text-light);
+            font-family: 'Inter', sans-serif;
+            font-weight: 500;
+        }
+
+        .product-buy {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: var(--brown);
+            color: var(--white);
+            border: none;
+            padding: 0.6rem 1.2rem;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 0.85rem;
+            font-weight: 600;
+            transition: all 0.3s;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .product-buy:hover {
+            background: var(--primary);
+            transform: scale(1.05);
+        }
+
+        /* REGIONS */
+        .regions {
+            background: var(--brown);
+            color: var(--cream);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .regions::before {
+            content: '';
+            position: absolute;
+            top: -200px; right: -200px;
+            width: 500px; height: 500px;
+            background: radial-gradient(circle, rgba(212, 160, 23, 0.15) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+
+        .regions .section-head h2 { color: var(--cream); }
+        .regions .section-head p { color: rgba(250, 243, 231, 0.7); }
+
+        .regions-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            align-items: center;
+        }
+
+        .map-container {
+            background: rgba(250, 243, 231, 0.05);
+            border: 1px solid rgba(250, 243, 231, 0.1);
+            border-radius: 24px;
+            padding: 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .map-container svg { width: 100%; height: auto; max-height: 450px; }
+
+        .regions-list {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        .region-item {
+            background: rgba(250, 243, 231, 0.05);
+            border: 1px solid rgba(250, 243, 231, 0.1);
+            border-radius: 15px;
+            padding: 1.2rem;
+            transition: all 0.3s;
+        }
+
+        .region-item:hover {
+            background: rgba(250, 243, 231, 0.1);
+            border-color: var(--secondary);
+            transform: translateY(-3px);
+        }
+
+        .region-item .city {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--secondary);
+            margin-bottom: 0.3rem;
+        }
+
+        .region-item .craft {
+            font-size: 0.82rem;
+            color: rgba(250, 243, 231, 0.7);
+        }
+
+        /* PROCESS */
+        .process { background: var(--white); }
+
+        .process-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .process-step {
+            text-align: center;
+            padding: 2rem 1.5rem;
+            position: relative;
+        }
+
+        .step-num {
+            font-family: 'Playfair Display', serif;
+            font-size: 5rem;
+            font-weight: 900;
+            color: var(--primary);
+            opacity: 0.15;
+            line-height: 1;
+            margin-bottom: 1rem;
+        }
+
+        .step-icon {
+            width: 70px; height: 70px;
+            background: var(--cream);
+            border: 2px solid var(--primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            font-size: 1.5rem;
+            color: var(--primary);
+        }
+
+        .process-step h3 {
+            font-size: 1.3rem;
+            margin-bottom: 0.8rem;
+            color: var(--brown);
+        }
+
+        .process-step p {
+            font-size: 0.9rem;
+            color: var(--text-light);
+            line-height: 1.6;
+        }
+
+        /* TESTIMONIALS */
+        .testimonials { background: var(--cream); }
+
+        .testi-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .testi-card {
+            background: var(--white);
+            border-radius: 24px;
+            padding: 2.5rem;
+            position: relative;
+            transition: all 0.4s;
+        }
+
+        .testi-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 50px rgba(62, 39, 35, 0.1);
+        }
+
+        .testi-quote {
+            position: absolute;
+            top: 1.5rem; right: 2rem;
+            font-family: 'Playfair Display', serif;
+            font-size: 5rem;
+            color: var(--primary);
+            opacity: 0.2;
+            line-height: 1;
+        }
+
+        .testi-stars {
+            color: var(--secondary);
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+        }
+
+        .testi-card p {
+            font-size: 0.98rem;
+            line-height: 1.7;
+            color: var(--brown);
+            margin-bottom: 1.5rem;
+            font-style: italic;
+            position: relative;
+            z-index: 2;
+        }
+
+        .testi-author {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .testi-avatar {
+            width: 50px; height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-weight: 700;
+            font-size: 1.1rem;
+        }
+
+        .avatar-1 { background: linear-gradient(135deg, var(--primary), var(--secondary)); }
+        .avatar-2 { background: linear-gradient(135deg, var(--accent), var(--accent-light)); }
+        .avatar-3 { background: linear-gradient(135deg, var(--brown), var(--brown-light)); }
+
+        .testi-author-info h4 {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: var(--brown);
+        }
+
+        .testi-author-info span {
+            font-size: 0.8rem;
+            color: var(--text-light);
+        }
+
+        /* CTA */
+        .cta-section {
+            padding: 7rem 5%;
+            background: var(--white);
+        }
+
+        .cta-box {
+            max-width: 1100px;
+            margin: 0 auto;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            border-radius: 40px;
+            padding: 5rem 4rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-box::before, .cta-box::after {
+            content: '';
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .cta-box::before {
+            top: -100px; left: -100px;
+            width: 300px; height: 300px;
+        }
+
+        .cta-box::after {
+            bottom: -80px; right: -80px;
+            width: 250px; height: 250px;
+        }
+
+        .cta-box h2 {
+            font-size: clamp(2rem, 4vw, 3rem);
+            color: var(--white);
+            margin-bottom: 1rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .cta-box h2 .italic { font-style: italic; font-weight: 400; }
+
+        .cta-box p {
+            color: rgba(255, 255, 255, 0.9);
+            max-width: 500px;
+            margin: 0 auto 2.5rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            position: relative;
+            z-index: 2;
+        }
+
+        .btn-white {
+            background: var(--white);
+            color: var(--primary);
+        }
+
+        .btn-white:hover {
+            background: var(--brown);
+            color: var(--white);
+            transform: translateY(-3px);
+        }
+
+        .btn-outline-white {
+            background: transparent;
+            color: var(--white);
+            border: 2px solid rgba(255, 255, 255, 0.5);
+        }
+
+        .btn-outline-white:hover {
+            background: var(--white);
+            color: var(--primary);
+            border-color: var(--white);
+            transform: translateY(-3px);
+        }
+
+        /* FOOTER */
+        .footer {
+            background: var(--brown);
+            color: var(--cream);
+            padding: 5rem 5% 2rem;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 3rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding-bottom: 3rem;
+            border-bottom: 1px solid rgba(250, 243, 231, 0.1);
+        }
+
+        .footer-brand .logo {
+            color: var(--cream);
+            margin-bottom: 1.2rem;
+        }
+
+        .footer-brand p {
+            color: rgba(250, 243, 231, 0.6);
+            font-size: 0.92rem;
+            margin-bottom: 1.5rem;
+            max-width: 320px;
+        }
+
+        .footer-social {
+            display: flex;
+            gap: 0.7rem;
+        }
+
+        .footer-social a {
+            width: 40px; height: 40px;
+            border-radius: 50%;
+            background: rgba(250, 243, 231, 0.08);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--cream);
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        .footer-social a:hover {
+            background: var(--primary);
+            transform: translateY(-3px);
+        }
+
+        .footer-col h4 {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.95rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            color: var(--cream);
+        }
+
+        .footer-col ul { list-style: none; }
+
+        .footer-col ul li { margin-bottom: 0.8rem; }
+
+        .footer-col ul li a {
+            color: rgba(250, 243, 231, 0.6);
+            text-decoration: none;
+            font-size: 0.88rem;
+            transition: all 0.3s;
+        }
+
+        .footer-col ul li a:hover {
+            color: var(--secondary);
+            padding-left: 5px;
+        }
+
+        .footer-bottom {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding-top: 2rem;
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .footer-bottom p {
+            font-size: 0.82rem;
+            color: rgba(250, 243, 231, 0.5);
+        }
+
+        .footer-bottom a { color: var(--secondary); text-decoration: none; }
+
+        /* ANIMATIONS */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 1024px) {
+            .hero { grid-template-columns: 1fr; text-align: center; padding-top: 7rem; }
+            .hero-desc { margin-left: auto; margin-right: auto; }
+            .hero-buttons { justify-content: center; }
+            .hero-stats { justify-content: center; }
+            .hero-visual { height: 450px; margin-top: 2rem; }
+            .hero-main-img { width: 320px; height: 320px; }
+            .chip-3 { display: none; }
+            .about-grid { grid-template-columns: 1fr; gap: 3rem; }
+            .about-visual { height: 450px; }
+            .regions-grid { grid-template-columns: 1fr; }
+            .footer-grid { grid-template-columns: 1fr 1fr; }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                position: fixed;
+                top: 0; right: -100%;
+                width: 80%; height: 100vh;
+                background: var(--white);
+                flex-direction: column;
+                justify-content: center;
+                transition: right 0.4s;
+                box-shadow: -10px 0 40px rgba(0,0,0,0.1);
+            }
+            .nav-links.active { right: 0; }
+            .hamburger { display: flex; }
+            .section { padding: 5rem 5%; }
+            .hero { padding: 6rem 5% 3rem; }
+            .hero-stats { gap: 1.5rem; }
+            .about-features { grid-template-columns: 1fr; }
+            .regions-list { grid-template-columns: 1fr; }
+            .cta-box { padding: 3rem 1.5rem; border-radius: 25px; }
+            .footer-grid { grid-template-columns: 1fr; }
+            .footer-bottom { flex-direction: column; text-align: center; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAVBAR -->
+    <nav class="navbar" id="navbar">
+        <a href="#" class="logo">
+            <div class="logo-icon"><i class="ri-leaf-fill"></i></div>
+            <div class="logo-text">
+                Kriya<span style="color: var(--primary); font-style: italic;">Jatim</span>
+                <div class="sub">Jawa Timur</div>
+            </div>
+        </a>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="#beranda">Beranda</a></li>
+            <li><a href="#tentang">Tentang</a></li>
+            <li><a href="#produk">Produk</a></li>
+            <li><a href="#wilayah">Wilayah</a></li>
+            <li><a href="#testimoni">Testimoni</a></li>
+            <li><a href="#kontak" class="nav-cta"><i class="ri-shopping-bag-line"></i> Belanja</a></li>
+        </ul>
+        <div class="hamburger" id="hamburger">
+            <span></span><span></span><span></span>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <section class="hero" id="beranda">
+        <div class="hero-bg-text">JAWA TIMUR</div>
+        <div class="hero-content">
+            <div class="hero-badge">
+                <i class="ri-map-pin-fill"></i>
+                Kerajinan Tangan Khas Jawa Timur
+            </div>
+            <h1>
+                Warisan <span class="accent">Kriya</span><br>
+                dari Ujung Timur<br>
+                Nusantara
+            </h1>
+            <p class="hero-desc">
+                Jelajahi keindahan kerajinan tangan autentik dari berbagai pelosok Jawa Timur. Setiap karya menyimpan cerita, tradisi, dan jiwa para pengrajin yang telah diwariskan turun-temurun.
+            </p>
+            <div class="hero-buttons">
+                <a href="#produk" class="btn btn-primary">
+                    Jelajahi Koleksi <i class="ri-arrow-right-line"></i>
+                </a>
+                <a href="#tentang" class="btn btn-outline">
+                    <i class="ri-play-circle-line"></i> Cerita Kami
+                </a>
+            </div>
+            <div class="hero-stats">
+                <div class="stat-item">
+                    <div class="num">120+</div>
+                    <div class="label">Pengrajin Lokal</div>
+                </div>
+                <div class="stat-item">
+                    <div class="num">8</div>
+                    <div class="label">Kabupaten/Kota</div>
+                </div>
+                <div class="stat-item">
+                    <div class="num">500+</div>
+                    <div class="label">Karya Unik</div>
+                </div>
+            </div>
+        </div>
+        <div class="hero-visual">
+            <div class="hero-main-img">
+                <!-- SVG Batik Madura -->
+                <svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                        <pattern id="batikHero" x="0" y="0" width="60" height="60" patternUnits="userSpaceOnUse">
+                            <rect width="60" height="60" fill="#8B2635"/>
+                            <circle cx="30" cy="30" r="15" fill="none" stroke="#F4C430" stroke-width="2"/>
+                            <circle cx="30" cy="30" r="8" fill="#F4C430"/>
+                            <circle cx="30" cy="30" r="3" fill="#8B2635"/>
+                            <path d="M30 5 L35 15 L30 20 L25 15 Z" fill="#2F5233"/>
+                            <path d="M30 55 L35 45 L30 40 L25 45 Z" fill="#2F5233"/>
+                            <path d="M5 30 L15 25 L20 30 L15 35 Z" fill="#D4A017"/>
+                            <path d="M55 30 L45 25 L40 30 L45 35 Z" fill="#D4A017"/>
+                            <circle cx="0" cy="0" r="4" fill="#F4C430"/>
+                            <circle cx="60" cy="0" r="4" fill="#F4C430"/>
+                            <circle cx="0" cy="60" r="4" fill="#F4C430"/>
+                            <circle cx="60" cy="60" r="4" fill="#F4C430"/>
+                        </pattern>
+                    </defs>
+                    <circle cx="200" cy="200" r="190" fill="url(#batikHero)"/>
+                    <circle cx="200" cy="200" r="190" fill="none" stroke="#F4C430" stroke-width="3"/>
+                    <circle cx="200" cy="200" r="170" fill="none" stroke="rgba(244,196,48,0.3)" stroke-width="1"/>
+                </svg>
+            </div>
+            <div class="hero-chip chip-1">
+                <div class="chip-icon red"><i class="ri-hand-heart-fill"></i></div>
+                <div class="chip-text">
+                    <h4>100% Handmade</h4>
+                    <p>Karya asli pengrajin</p>
+                </div>
+            </div>
+            <div class="hero-chip chip-2">
+                <div class="chip-icon yellow"><i class="ri-star-fill"></i></div>
+                <div class="chip-text">
+                    <h4>4.9 Rating</h4>
+                    <p>2.500+ ulasan</p>
+                </div>
+            </div>
+            <div class="hero-chip chip-3">
+                <div class="chip-icon green"><i class="ri-leaf-fill"></i></div>
+                <div class="chip-text">
+                    <h4>Bahan Alami</h4>
+                    <p>Ramah lingkungan</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- MARQUEE -->
+    <div class="marquee">
+        <div class="marquee-track">
+            <div class="marquee-item">
+                <span>Batik Madura</span><span class="star">✦</span>
+                <span>Topeng Malangan</span><span class="star">✦</span>
+                <span>Anyaman Rotan</span><span class="star">✦</span>
+                <span>Bordir Tulungagung</span><span class="star">✦</span>
+                <span>Keramik Dinoyo</span><span class="star">✦</span>
+                <span>Wayang Kulit</span><span class="star">✦</span>
+            </div>
+            <div class="marquee-item">
+                <span>Batik Madura</span><span class="star">✦</span>
+                <span>Topeng Malangan</span><span class="star">✦</span>
+                <span>Anyaman Rotan</span><span class="star">✦</span>
+                <span>Bordir Tulungagung</span><span class="star">✦</span>
+                <span>Keramik Dinoyo</span><span class="star">✦</span>
+                <span>Wayang Kulit</span><span class="star">✦</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- ABOUT -->
+    <section class="section about" id="tentang">
+        <div class="about-grid">
+            <div class="about-visual reveal">
+                <div class="about-img-main">
+                    <!-- SVG Pengrajin -->
+                    <svg viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg">
+                        <rect width="300" height="300" fill="transparent"/>
+                        <!-- Artisan silhouette -->
+                        <g transform="translate(150,150)">
+                            <!-- Head -->
+                            <circle cx="0" cy="-60" r="30" fill="rgba(250,243,231,0.9)"/>
+                            <!-- Blangkon -->
+                            <path d="M-30 -65 Q-30 -85 0 -85 Q30 -85 30 -65 L25 -60 L-25 -60 Z" fill="#3E2723"/>
+                            <path d="M-25 -60 L25 -60" stroke="#F4C430" stroke-width="2"/>
+                            <!-- Body -->
+                            <path d="M-40 -30 Q-50 20 -40 80 L40 80 Q50 20 40 -30 Z" fill="rgba(250,243,231,0.85)"/>
+                            <!-- Batik pattern on shirt -->
+                            <g fill="#D4A017" opacity="0.6">
+                                <circle cx="-20" cy="0" r="3"/>
+                                <circle cx="0" cy="10" r="3"/>
+                                <circle cx="20" cy="0" r="3"/>
+                                <circle cx="-10" cy="30" r="3"/>
+                                <circle cx="10" cy="30" r="3"/>
+                                <circle cx="0" cy="50" r="3"/>
+                            </g>
+                            <!-- Hands working -->
+                            <ellipse cx="-50" cy="40" rx="15" ry="10" fill="rgba(250,243,231,0.9)" transform="rotate(-20 -50 40)"/>
+                            <ellipse cx="50" cy="40" rx="15" ry="10" fill="rgba(250,243,231,0.9)" transform="rotate(20 50 40)"/>
+                        </g>
+                        <!-- Craft item in hands -->
+                        <g transform="translate(150,190)">
+                            <rect x="-40" y="-10" width="80" height="30" rx="5" fill="#D4A017"/>
+                            <rect x="-35" y="-5" width="70" height="20" rx="3" fill="#F4C430"/>
+                            <g stroke="#8B2635" stroke-width="1" fill="none">
+                                <path d="M-25 0 L-15 10 M-15 0 L-5 10 M-5 0 L5 10 M5 0 L15 10 M15 0 L25 10"/>
+                            </g>
+                        </g>
+                        <!-- Decorative elements -->
+                        <circle cx="50" cy="50" r="20" fill="rgba(244,196,48,0.3)"/>
+                        <circle cx="250" cy="250" r="25" fill="rgba(244,196,48,0.2)"/>
+                    </svg>
+                </div>
+                <div class="about-img-small">
+                    <!-- SVG Rempah & Bahan -->
+                    <svg viewBox="0 0 250 250" xmlns="http://www.w3.org/2000/svg">
+                        <rect width="250" height="250" fill="transparent"/>
+                        <!-- Indigo plant -->
+                        <g transform="translate(70,80)">
+                            <path d="M0 0 Q-15 -10 -20 -25 Q-10 -20 0 -15 Q10 -20 20 -25 Q15 -10 0 0 Z" fill="#2F5233"/>
+                            <path d="M0 0 Q-10 15 -5 30 Q0 25 5 30 Q10 15 0 0 Z" fill="#4A7C4E"/>
+                            <line x1="0" y1="-15" x2="0" y2="40" stroke="#2F5233" stroke-width="2"/>
+                        </g>
+                        <!-- Cotton -->
+                        <g transform="translate(170,100)">
+                            <circle r="15" fill="#FAF3E7"/>
+                            <circle cx="-10" cy="-8" r="10" fill="#FAF3E7"/>
+                            <circle cx="10" cy="-8" r="10" fill="#FAF3E7"/>
+                            <circle cx="0" cy="10" r="10" fill="#FAF3E7"/>
+                            <path d="M0 15 L0 35" stroke="#4A7C4E" stroke-width="2"/>
+                            <path d="M-5 25 Q-10 30 -5 35" stroke="#4A7C4E" stroke-width="1.5" fill="none"/>
+                        </g>
+                        <!-- Rattan -->
+                        <g transform="translate(125,180)">
+                            <path d="M-40 0 Q-20 -10 0 0 Q20 10 40 0" stroke="#D4A017" stroke-width="3" fill="none"/>
+                            <path d="M-40 10 Q-20 0 0 10 Q20 20 40 10" stroke="#D4A017" stroke-width="3" fill="none"/>
+                            <path d="M-40 20 Q-20 10 0 20 Q20 30 40 20" stroke="#D4A017" stroke-width="3" fill="none"/>
+                        </g>
+                        <!-- Thread -->
+                        <g transform="translate(60,180)">
+                            <circle r="12" fill="#8B2635"/>
+                            <circle r="5" fill="#3E2723"/>
+                        </g>
+                    </svg>
+                </div>
+                <div class="about-badge">
+                    <div class="num">38</div>
+                    <div class="txt">Tahun</div>
+                </div>
+            </div>
+            <div class="about-text reveal">
+                <div class="section-tag">Tentang Kami</div>
+                <h2>Melestarikan <span class="accent">Warisan Kriya</span> Jawa Timur</h2>
+                <p>KriyaJatim lahir dari kecintaan terhadap kekayaan budaya Jawa Timur. Kami menghubungkan pengrajin lokal dari berbagai kabupaten dengan pencinta karya autentik di seluruh Indonesia.</p>
+                <p>Setiap karya yang kami hadirkan memiliki cerita unik — dari batik Madura yang penuh warna, topeng Malangan yang sakral, hingga anyaman rotan Lumajang yang halus. Semua dibuat dengan tangan, cinta, dan keahlian turun-temurun.</p>
+                <div class="about-features">
+                    <div class="feature-item">
+                        <div class="feature-icon"><i class="ri-hand-heart-fill"></i></div>
+                        <div>
+                            <h4>Autentik</h4>
+                            <p>100% handmade asli Jatim</p>
+                        </div>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon"><i class="ri-leaf-fill"></i></div>
+                        <div>
+                            <h4>Berkelanjutan</h4>
+                            <p>Bahan alami ramah lingkungan</p>
+                        </div>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon"><i class="ri-heart-3-fill"></i></div>
+                        <div>
+                            <h4>Berdaya</h4>
+                            <p>Sejahterakan pengrajin lokal</p>
+                        </div>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon"><i class="ri-shield-check-fill"></i></div>
+                        <div>
+                            <h4>Terpercaya</h4>
+                            <p>Kualitas terjamin</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PRODUCTS -->
+    <section class="section products" id="produk">
+        <div class="section-head reveal">
+            <div class="section-tag">Koleksi Kriya</div>
+            <h2>Kerajinan Tangan <span class="accent">Khas Jawa Timur</span></h2>
+            <p>Setiap produk dibuat dengan cinta oleh pengrajin terbaik dari berbagai daerah di Jawa Timur</p>
+        </div>
+        <div class="products-filter reveal">
+            <button class="filter-btn active" data-filter="all">Semua</button>
+            <button class="filter-btn" data-filter="tekstil">Tekstil</button>
+            <button class="filter-btn" data-filter="kayu">Kayu & Ukir</button>
+            <button class="filter-btn" data-filter="anyam">Anyaman</button>
+            <button class="filter-btn" data-filter="keramik">Keramik</button>
+            <button class="filter-btn" data-filter="tradisional">Tradisional</button>
+        </div>
+        <div class="products-grid">
+            <!-- Product 1: Batik Madura -->
+            <div class="product-card reveal" data-category="tekstil">
+                <div class="product-img" style="background: linear-gradient(135deg, #8B2635, #D4A017);">
+                    <span class="product-tag">Best Seller</span>
+                    <span class="product-location"><i class="ri-map-pin-fill"></i> Madura</span>
+                    <button class="product-wishlist"><i class="ri-heart-line"></i></button>
+                    <svg viewBox="0 0 300 280" xmlns="http://www.w3.org/2000/svg">
+                        <defs>
+                            <pattern id="batikMadura" x="0" y="0" width="50" height="50" patternUnits="userSpaceOnUse">
+                                <rect width="50" height="50" fill="#8B2635"/>
+                                <circle cx="25" cy="25" r="12" fill="none" stroke="#F4C430" stroke-width="1.5"/>
+                                <circle cx="25" cy="25" r="6" fill="#F4C430"/>
+                                <circle cx="25" cy="25" r="2" fill="#8B2635"/>
+                                <path d="M25 5 L28 12 L25 15 L22 12 Z" fill="#2F5233"/>
+                                <path d="M25 45 L28 38 L25 35 L22 38 Z" fill="#2F5233"/>
+                                <path d="M5 25 L12 22 L15 25 L12 28 Z" fill="#D4A017"/>
+                                <path d="M45 25 L38 22 L35 25 L38 28 Z" fill="#D4A017"/>
+                                <circle cx="0" cy="0" r="3" fill="#F4C430"/>
+                                <circle cx="50" cy="0" r="3" fill="#F4C430"/>
+                                <circle cx="0" cy="50" r="3" fill="#F4C430"/>
+                                <circle cx="50" cy="50" r="3" fill="#F4C430"/>
+                            </pattern>
+                        </defs>
+                        <!-- Folded batik fabric -->
+                        <path d="M50 40 L250 40 L260 240 L40 240 Z" fill="url(#batikMadura)" stroke="#3E2723" stroke-width="1.5"/>
+                        <path d="M50 40 L250 40" stroke="rgba(62,39,35,0.5)" stroke-width="1"/>
+                        <!-- Fold shadow -->
+                        <path d="M150 40 L150 240" stroke="rgba(62,39,35,0.3)" stroke-width="0.5" stroke-dasharray="3,3"/>
+                        <!-- Label -->
+                        <rect x="115" y="130" width="70" height="35" fill="rgba(250,243,231,0.95)" rx="3"/>
+                        <text x="150" y="148" text-anchor="middle" font-family="serif" font-size="10" fill="#8B2635" font-style="italic">Batik</text>
+                        <text x="150" y="160" text-anchor="middle" font-family="sans-serif" font-size="7" fill="#3E2723">MADURA</text>
+                        <ellipse cx="150" cy="255" rx="100" ry="6" fill="rgba(62,39,35,0.15)"/>
+                    </svg>
+                </div>
+                <div class="product-info">
+                    <div class="product-cat">Tekstil · Madura</div>
+                    <h3>Batik Tulis Madura</h3>
+                    <p class="desc">Kain batik tulis dengan warna-warna cerah khas Madura, motif burung & bunga.</p>
+                    <div class="product-bottom">
+                        <div class="product-price"><span class="currency">Rp</span> 450.000</div>
+                        <button class="product-buy"><i class="ri-shopping-bag-line"></i> Beli</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product 2: Topeng Malangan -->
+            <div class="product-card reveal" data-category="kayu">
+                <div class="product-img" style="background: linear-gradient(135deg, #5D4037, #3E2723);">
+                    <span class="product-tag">Signature</span>
+                    <span class="product-location"><i class="ri-map-pin-fill"></i> Malang</span>
+                    <button class="product-wishlist"><i class="ri-heart-line"></i></button>
+                    <svg viewBox="0 0 300 280" xmlns="http://www.w3.org/2000/svg">
+                        <defs>
+                            <linearGradient id="mask1" x1="0" y1="0" x2="0" y2="1">
+                                <stop offset="0%" stop-color="#D4A017"/>
+                                <stop offset="50%" stop-color="#8B2635"/>
+                                <stop offset="100%" stop-color="#3E2723"/>
+                            </linearGradient>
+                        </defs>
+                        <!-- Mask face -->
+                        <path d="M150 40 Q90 50 80 120 Q75 180 100 220 Q130 250 150 250 Q170 250 200 220 Q225 180 220 120 Q210 50 150 40 Z" fill="url(#mask1)" stroke="#3E2723" stroke-width="2"/>
+                        <!-- Crown/headdress -->
+                        <path d="M90 60 L110 30 L130 50 L150 20 L170 50 L190 30 L210 60 Q200 45 150 40 Q100 45 90 60 Z" fill="#F4C430" stroke="#3E2723" stroke-width="1.5"/>
+                        <circle cx="150" cy="35" r="5" fill="#8B2635"/>
+                        <!-- Eyes -->
+                        <ellipse cx="120" cy="120" rx="18" ry="12" fill="#FAF3E7"/>
+                        <ellipse cx="180" cy="120" rx="18" ry="12" fill="#FAF3E7"/>
+                        <circle cx="120" cy="120" r="6" fill="#3E2723"/>
+                        <circle cx="180" cy="120" r="6" fill="#3E2723"/>
+                        <circle cx="122" cy="118" r="2" fill="#FAF3E7"/>
+                        <circle cx="182" cy="118" r="2" fill="#FAF3E7"/>
+                        <!-- Eyebrows -->
+                        <path d="M100 100 Q120 90 140 100" stroke="#3E2723" stroke-width="3" fill="none" stroke-linecap="round"/>
+                        <path d="M160 100 Q180 90 200 100" stroke="#3E2723" stroke-width="3" fill="none" stroke-linecap="round"/>
+                        <!-- Nose -->
+                        <path d="M150 135 Q145 160 140 175 Q150 180 160 175 Q155 160 150 135" fill="#8B2635" stroke="#3E2723" stroke-width="1"/>
+                        <!-- Mouth -->
+                        <path d="M120 200 Q150 215 180 200" stroke="#3E2723" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+                        <path d="M125 200 Q150 208 175 200" fill="#8B2635"/>
+                        <!-- Cheek ornaments -->
+                        <circle cx="95" cy="160" r="8" fill="#F4C430"/>
+                        <circle cx="205" cy="160" r="8" fill="#F4C430"/>
+                        <circle cx="95" cy="160" r="4" fill="#8B2635"/>
+                        <circle cx="205" cy="160" r="4" fill="#8B2635"/>
+                        <!-- Decorative dots -->
+                        <g fill="#F4C430">
+                            <circle cx="110" cy="85" r="2"/>
+                            <circle cx="130" cy="78" r="2"/>
+                            <circle cx="170" cy="78" r="2"/>
+                            <circle cx="190" cy="85" r="2"/>
+                        </g>
+                    </svg>
+                </div>
+                <div class="product-info">
+                    <div class="product-cat">Kayu & Ukir · Malang</div>
+                    <h3>Topeng Malangan</h3>
+                    <p class="desc">Topeng kayu khas Malang untuk tari topeng, diukir detail dengan cat tradisional.</p>
+                    <div class="product-bottom">
+                        <div class="product-price"><span class="currency">Rp</span> 380.000</div>
+                        <button class="product-buy"><i class="ri-shopping-bag-line"></i> Beli</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product 3: Anyaman Rotan Lumajang -->
+            <div class="product-card reveal" data-category="anyam">
+                <div class="product-img" style="background: linear-gradient(135deg, #D4A017, #8B6F47);">
+                    <span class="product-tag">Handmade</span>
+                    <span class="product-location"><i class="ri-map-pin-fill"></i> Lumajang</span>
+                    <button class="product-wishlist"><i class="ri-heart-line"></i></button>
+                    <svg viewBox="0 0 300 280" xmlns="http://www.w3.org/2000/svg">
+                        <defs>
+                            <pattern id="rattan1" x="0" y="0" width="15" height="15" patternUnits="userSpaceOnUse">
+                                <rect width="15" height="15" fill="#D4A017"/>
+                                <path d="M0 7.5 L15 7.5 M7.5 0 L7.5 15" stroke="#8B6F47" stroke-width="1"/>
+                                <circle cx="7.5" cy="7.5" r="1.5" fill="#8B6F47"/>
+                            </pattern>
+                        </defs>
+                        <!-- Bag handle -->
+                        <path d="M110 80 Q110 40 150 40 Q190 40 190 80" stroke="#5D4037" stroke-width="6" fill="none" stroke-linecap="round"/>
+                        <path d="M110 80 Q110 43 150 43 Q190 43 190 80" stroke="#8B6F47" stroke-width="2" fill="none" stroke-linecap="round"/>
+                        <!-- Bag body -->
+                        <path d="M80 90 L80 230 Q80 250 100 250 L200 250 Q220 250 220 230 L220 90 Q220 80 210 80 L90 80 Q80 80 80 90 Z" fill="url(#rattan1)" stroke="#5D4037" stroke-width="2"/>
+                        <!-- Weave detail -->
+                        <g opacity="0.5">
+                            <path d="M90 110 L210 110 M90 130 L210 130 M90 150 L210 150 M90 170 L210 170 M90 190 L210 190 M90 210 L210 210 M90 230 L210 230" stroke="#5D4037" stroke-width="0.5"/>
+                            <path d="M110 90 L110 240 M130 90 L130 240 M150 90 L150 240 M170 90 L170 240 M190 90 L190 240" stroke="#5D4037" stroke-width="0.5"/>
+                        </g>
+                        <!-- Decorative clasp -->
+                        <circle cx="150" cy="115" r="10" fill="#5D4037"/>
+                        <circle cx="150" cy="115" r="5" fill="#D4A017"/>
+                        <!-- Tassels -->
+                        <g stroke="#8B6F47" stroke-width="1.5">
+                            <line x1="140" y1="250" x2="138" y2="265"/>
+                            <line x1="150" y1="250" x2="150" y2="268"/>
+                            <line x1="160" y1="250" x2="162" y2="265"/>
+                        </g>
+                        <ellipse cx="150" cy="265" rx="70" ry="5" fill="rgba(62,39,35,0.15)"/>
+                    </svg>
+                </div>
+                <div class="product-info">
+                    <div class="product-cat">Anyaman · Lumajang</div>
+                    <h3>Tas Anyaman Rotan</h3>
+                    <p class="desc">Tas rotan asli Lumajang, dianyam tangan dengan teknik tradisional yang halus.</p>
+                    <div class="product-bottom">
+                        <div class="product-price"><span class="currency">Rp</span> 285.000</div>
+                        <button class="product-buy"><i class="ri-shopping-bag-line"></i> Beli</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product 4: Bordir Tasbi Tulungagung -->
+            <div class="product-card reveal" data-category="tekstil">
+                <div class="product-img" style="background: linear-gradient(135deg, #FAF3E7, #D4A017);">
+                    <span class="product-tag">Premium</span>
+                    <span class="product-location"><i class="ri-map-pin-fill"></i> Tulungagung</span>
+                    <button class="product-wishlist"><i class="ri-heart-line"></i></button>
+                    <svg viewBox="0 0 300 280" xmlns="http://www.w3.org/2000/svg">
+                        <defs>
+                            <linearGradient id="emb1" x1="0" y1="0" x2="1" y2="1">
+                                <stop offset="0%" stop-color="#FAF3E7"/>
+                                <stop offset="100%" stop-color="#F0E4CC"/>
+                            </linearGradient>
+                        </defs>
+                        <!-- Bag body -->
+                        <path d="M70 100 Q70 80 90 80 L210 80 Q230 80 230 100 L230 230 Q230 250 210 250 L90 250 Q70 250 70 230 Z" fill="url(#emb1)" stroke="#8B6F47" stroke-width="1.5"/>
+                        <!-- Handle -->
+                        <path d="M110 80 Q110 50 150 50 Q190 50 190 80" stroke="#8B2635" stroke-width="4" fill="none"/>
+                        <!-- Embroidery pattern - floral -->
+                        <g transform="translate(150,165)">
+                            <!-- Center flower -->
+                            <circle r="15" fill="#D4A017"/>
+                            <circle r="8" fill="#8B2635"/>
+                            <circle r="3" fill="#F4C430"/>
+                            <!-- Petals -->
+                            <g fill="#8B2635">
+                                <ellipse cx="0" cy="-25" rx="6" ry="10"/>
+                                <ellipse cx="0" cy="25" rx="6" ry="10"/>
+                                <ellipse cx="-25" cy="0" rx="10" ry="6"/>
+                                <ellipse cx="25" cy="0" rx="10" ry="6"/>
+                                <ellipse cx="-18" cy="-18" rx="6" ry="10" transform="rotate(-45 -18 -18)"/>
+                                <ellipse cx="18" cy="-18" rx="6" ry="10" transform="rotate(45 18 -18)"/>
+                                <ellipse cx="-18" cy="18" rx="6" ry="10" transform="rotate(45 -18 18)"/>
+                                <ellipse cx="18" cy="18" rx="6" ry="10" transform="rotate(-45 18 18)"/>
+                            </g>
+                            <!-- Leaves -->
+                            <g fill="#2F5233">
+                                <ellipse cx="-40" cy="-10" rx="10" ry="5" transform="rotate(-30 -40 -10)"/>
+                                <ellipse cx="40" cy="-10" rx="10" ry="5" transform="rotate(30 40 -10)"/>
+                                <ellipse cx="-40" cy="10" rx="10" ry="5" transform="rotate(30 -40 10)"/>
+                                <ellipse cx="40" cy="10" rx="10" ry="5" transform="rotate(-30 40 10)"/>
+                            </g>
+                            <!-- Small flowers -->
+                            <g>
+                                <circle cx="-50" cy="-35" r="5" fill="#D4A017"/>
+                                <circle cx="50" cy="-35" r="5" fill="#D4A017"/>
+                                <circle cx="-50" cy="35" r="5" fill="#D4A017"/>
+                                <circle cx="50" cy="35" r="5" fill="#D4A017"/>
+                            </g>
+                        </g>
+                        <!-- Stitch details -->
+                        <g stroke="#8B2635" stroke-width="0.5" stroke-dasharray="2,2" fill="none" opacity="0.5">
+                            <path d="M90 100 L210 100"/>
+                            <path d="M90 230 L210 230"/>
+                        </g>
+                        <ellipse cx="150" cy="260" rx="80" ry="5" fill="rgba(62,39,35,0.15)"/>
+                    </svg>
+                </div>
+                <div class="product-info">
+                    <div class="product-cat">Tekstil · Tulungagung</div>
+                    <h3>Tas Bordir Tasbi</h3>
+                    <p class="desc">Tas bordir khas Tulungagung dengan motif bunga yang elegan dan detail halus.</p>
+                    <div class="product-bottom">
+                        <div class="product-price"><span class="currency">Rp</span> 320.000</div>
+                        <button class="product-buy"><i class="ri-shopping-bag-line"></i> Beli</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product 5: Keramik Dinoyo -->
+            <div class="product-card reveal" data-category="keramik">
+                <div class="product-img" style="background: linear-gradient(135deg, #4A7C4E, #2F5233);">
+                    <span class="product-tag">Artisan</span>
+                    <span class="product-location"><i class="ri-map-pin-fill"></i> Malang</span>
+                    <button class="product-wishlist"><i class="ri-heart-line"></i></button>
+                    <svg viewBox="0 0 300 280" xmlns="http://www.w3.org/2000/svg">
+                        <defs>
+                            <linearGradient id="ceramic1" x1="0" y1="0" x2="1" y2="1">
+                                <stop offset="0%" stop-color="#FAF3E7"/>
+                                <stop offset="100%" stop-color="#D4A017"/>
+                            </linearGradient>
+                        </defs>
+                        <!-- Vase shape -->
+                        <path d="M120 60 L120 80 Q90 90 85 140 Q80 200 100 240 Q110 260 150 260 Q190 260 200 240 Q220 200 215 140 Q210 90 180 80 L180 60 Z" fill="url(#ceramic1)" stroke="#3E2723" stroke-width="1.5"/>
+                        <!-- Vase rim -->
+                        <ellipse cx="150" cy="60" rx="30" ry="8" fill="#3E2723"/>
+                        <ellipse cx="150" cy="60" rx="25" ry="5" fill="#5D4037"/>
+                        <!-- Blue floral pattern -->
+                        <g fill="#1E3A8A" opacity="0.9">
+                            <circle cx="150" cy="140" r="12"/>
+                            <circle cx="150" cy="140" r="6" fill="#FAF3E7"/>
+                            <circle cx="150" cy="140" r="3" fill="#1E3A8A"/>
+                            <!-- Petals -->
+                            <ellipse cx="150" cy="115" rx="5" ry="10"/>
+                            <ellipse cx="150" cy="165" rx="5" ry="10"/>
+                            <ellipse cx="125" cy="140" rx="10" ry="5"/>
+                            <ellipse cx="175" cy="140" rx="10" ry="5"/>
+                        </g>
+                        <!-- Small flowers -->
+                        <g fill="#1E3A8A">
+                            <circle cx="110" cy="110" r="4"/>
+                            <circle cx="190" cy="110" r="4"/>
+                            <circle cx="110" cy="180" r="4"/>
+                            <circle cx="190" cy="180" r="4"/>
+                        </g>
+                        <!-- Vine lines -->
+                        <g stroke="#1E3A8A" stroke-width="1" fill="none" opacity="0.7">
+                            <path d="M110 110 Q130 125 150 140"/>
+                            <path d="M190 110 Q170 125 150 140"/>
+                            <path d="M110 180 Q130 165 150 140"/>
+                            <path d="M190 180 Q170 165 150 140"/>
+                        </g>
+                        <!-- Horizontal decorative lines -->
+                        <path d="M90 200 Q150 195 210 200" stroke="#1E3A8A" stroke-width="1" fill="none" opacity="0.5"/>
+                        <path d="M95 220 Q150 215 205 220" stroke="#1E3A8A" stroke-width="1" fill="none" opacity="0.5"/>
+                        <ellipse cx="150" cy="270" rx="60" ry="5" fill="rgba(62,39,35,0.15)"/>
+                    </svg>
+                </div>
+                <div class="product-info">
+                    <div class="product-cat">Keramik · Dinoyo Malang</div>
+                    <h3>Vas Keramik Dinoyo</h3>
+                    <p class="desc">Vas keramik khas Dinoyo dengan motif biru putih klasik, buatan tangan pengrajin lokal.</p>
+                    <div class="product-bottom">
+                        <div class="product-price"><span class="currency">Rp</span> 275.000</div>
+                        <button class="product-buy"><i class="ri-shopping-bag-line"></i> Beli</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product 6: Wayang Kulit -->
+            <div class="product-card reveal" data-category="tradisional">
+                <div class="product-img" style="background: linear-gradient(135deg, #3E2723, #8B2635);">
+                    <span class="product-tag">Exclusive</span>
+                    <span class="product-location"><i class="ri-map-pin-fill"></i> Surabaya</span>
+                    <button class="product-wishlist"><i class="ri-heart-line"></i></button>
+                    <svg viewBox="0 0 300 280" xmlns="http://www.w3.org/2000/svg">
+                        <defs>
+                            <linearGradient id="wayang1" x1="0" y1="0" x2="0" y2="1">
+                                <stop offset="0%" stop-color="#D4A017"/>
+                                <stop offset="100%" stop-color="#8B6F47"/>
+                            </linearGradient>
+                        </defs>
+                        <!-- Wayang body -->
+                        <g transform="translate(150,140)">
+                            <!-- Head crown -->
+                            <path d="M-20 -80 L-15 -100 L-5 -90 L0 -110 L5 -90 L15 -100 L20 -80 Q15 -70 0 -70 Q-15 -70 -20 -80 Z" fill="url(#wayang1)" stroke="#3E2723" stroke-width="1.5"/>
+                            <circle cy="-95" r="3" fill="#8B2635"/>
+                            <!-- Head -->
+                            <path d="M-25 -70 Q-30 -50 -25 -30 L25 -30 Q30 -50 25 -70 Z" fill="url(#wayang1)" stroke="#3E2723" stroke-width="1.5"/>
+                            <!-- Face profile -->
+                            <path d="M-15 -55 L-5 -55 L-5 -45 L-10 -40 L-15 -45 Z" fill="#3E2723"/>
+                            <circle cx="-10" cy="-50" r="1.5" fill="#3E2723"/>
+                            <!-- Body torso -->
+                            <path d="M-25 -30 L-30 40 L30 40 L25 -30 Z" fill="url(#wayang1)" stroke="#3E2723" stroke-width="1.5"/>
+                            <!-- Sarong -->
+                            <path d="M-30 40 L-35 100 L35 100 L30 40 Z" fill="url(#wayang1)" stroke="#3E2723" stroke-width="1.5"/>
+                            <!-- Batik pattern on sarong -->
+                            <g fill="#8B2635" opacity="0.7">
+                                <circle cx="-15" cy="55" r="2"/>
+                                <circle cx="0" cy="65" r="2"/>
+                                <circle cx="15" cy="55" r="2"/>
+                                <circle cx="-10" cy="75" r="2"/>
+                                <circle cx="10" cy="75" r="2"/>
+                                <circle cx="0" cy="85" r="2"/>
+                            </g>
+                            <!-- Arms -->
+                            <path d="M-30 -20 L-50 20 L-45 50 L-40 50 L-45 25 L-25 -10 Z" fill="url(#wayang1)" stroke="#3E2723" stroke-width="1"/>
+                            <path d="M30 -20 L50 20 L45 50 L40 50 L45 25 L25 -10 Z" fill="url(#wayang1)" stroke="#3E2723" stroke-width="1"/>
+                            <!-- Ornamental dots -->
+                            <g fill="#8B2635">
+                                <circle cx="-15" cy="-10" r="1.5"/>
+                                <circle cx="15" cy="-10" r="1.5"/>
+                                <circle cx="0" cy="0" r="1.5"/>
+                                <circle cx="-15" cy="15" r="1.5"/>
+                                <circle cx="15" cy="15" r="1.5"/>
+                            </g>
+                            <!-- Stick -->
+                            <line x1="45" y1="50" x2="60" y2="120" stroke="#5D4037" stroke-width="2"/>
+                        </g>
+                        <!-- Decorative cutouts -->
+                        <g fill="rgba(250,243,231,0.3)">
+                            <circle cx="80" cy="80" r="3"/>
+                            <circle cx="220" cy="80" r="3"/>
+                            <circle cx="80" cy="200" r="3"/>
+                            <circle cx="220" cy="200" r="3"/>
+                        </g>
+                    </svg>
+                </div>
+                <div class="product-info">
+                    <div class="product-cat">Tradisional · Surabaya</div>
+                    <h3>Wayang Kulit Jawa</h3>
+                    <p class="desc">Wayang kulit handmade dari kulit kerbau, diukir detail oleh dalang berpengalaman.</p>
+                    <div class="product-bottom">
+                        <div class="product-price"><span class="currency">Rp</span> 550.000</div>
+                        <button class="product-buy"><i class="ri-shopping-bag-line"></i> Beli</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product 7: Kerajinan Tembaga -->
+            <div class="product-card reveal" data-category="tradisional">
+                <div class="product-img" style="background: linear-gradient(135deg, #D4A017, #8B6F47);">
+                    <span class="product-tag">Luxury</span>
+                    <span class="product-location"><i class="ri-map-pin-fill"></i> Surabaya</span>
+                    <button class="product-wishlist"><i class="ri-heart-line"></i></button>
+                    <svg viewBox="0 0 300 280" xmlns="http://www.w3.org/2000/svg">
+                        <defs>
+                            <linearGradient id="copper1" x1="0" y1="0" x2="1" y2="1">
+                                <stop offset="0%" stop-color="#F4C430"/>
+                                <stop offset="50%" stop-color="#D4A017"/>
+                                <stop offset="100%" stop-color="#8B6F47"/>
+                            </linearGradient>
+                            <radialGradient id="copperShine" cx="0.3" cy="0.3">
+                                <stop offset="0%" stop-color="#FAF3E7" stop-opacity="0.8"/>
+                                <stop offset="100%" stop-color="#D4A017" stop-opacity="0"/>
+                            </radialGradient>
+                        </defs>
+                        <!-- Tray -->
+                        <ellipse cx="150" cy="180" rx="110" ry="30" fill="url(#copper1)" stroke="#5D4037" stroke-width="2"/>
+                        <ellipse cx="150" cy="175" rx="105" ry="25" fill="url(#copper1)"/>
+                        <ellipse cx="150" cy="175" rx="105" ry="25" fill="url(#copperShine)"/>
+                        <!-- Inner tray -->
+                        <ellipse cx="150" cy="175" rx="85" ry="18" fill="#8B6F47"/>
+                        <ellipse cx="150" cy="173" rx="80" ry="15" fill="url(#copper1)"/>
+                        <!-- Ornamental pattern -->
+                        <g stroke="#5D4037" stroke-width="1" fill="none" opacity="0.6">
+                            <ellipse cx="150" cy="175" rx="95" ry="22"/>
+                            <ellipse cx="150" cy="175" rx="70" ry="13"/>
+                        </g>
+                        <!-- Decorative motifs on tray -->
+                        <g fill="#8B2635" opacity="0.8">
+                            <circle cx="80" cy="175" r="3"/>
+                            <circle cx="220" cy="175" r="3"/>
+                            <circle cx="150" cy="160" r="3"/>
+                            <circle cx="150" cy="190" r="3"/>
+                            <circle cx="110" cy="168" r="2.5"/>
+                            <circle cx="190" cy="168" r="2.5"/>
+                            <circle cx="110" cy="182" r="2.5"/>
+                            <circle cx="190" cy="182" r="2.5"/>
+                        </g>
+                        <!-- Center ornament -->
+                        <g transform="translate(150,175)">
+                            <circle r="10" fill="#8B2635"/>
+                            <circle r="6" fill="#D4A017"/>
+                            <circle r="2" fill="#8B2635"/>
+                        </g>
+                        <!-- Shine highlights -->
+                        <ellipse cx="120" cy="165" rx="20" ry="5" fill="rgba(250,243,231,0.4)"/>
+                        <ellipse cx="180" cy="170" rx="15" ry="3" fill="rgba(250,243,231,0.3)"/>
+                        <ellipse cx="150" cy="220" rx="90" ry="5" fill="rgba(62,39,35,0.15)"/>
+                    </svg>
+                </div>
+                <div class="product-info">
+                    <div class="product-cat">Logam · Surabaya</div>
+                    <h3>Tampah Tembaga Ukir</h3>
+                    <p class="desc">Tampah tembaga dengan ukiran motif Jawa, ditempa tangan oleh pengrajin ahli.</p>
+                    <div class="product-bottom">
+                        <div class="product-price"><span class="currency">Rp</span> 480.000</div>
+                        <button class="product-buy"><i class="ri-shopping-bag-line"></i> Beli</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product 8: Kerajinan Bambu Mojokerto -->
+            <div class="product-card reveal" data-category="anyam">
+                <div class="product-img" style="background: linear-gradient(135deg, #4A7C4E, #D4A017);">
+                    <span class="product-tag">Eco</span>
+                    <span class="product-location"><i class="ri-map-pin-fill"></i> Mojokerto</span>
+                    <button class="product-wishlist"><i class="ri-heart-line"></i></button>
+                    <svg viewBox="0 0 300 280" xmlns="http://www.w3.org/2000/svg">
+                        <defs>
+                            <pattern id="bamboo1" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
+                                <rect width="20" height="20" fill="#D4A017"/>
+                                <path d="M0 10 L20 10 M10 0 L10 20" stroke="#8B6F47" stroke-width="0.8"/>
+                            </pattern>
+                        </defs>
+                        <!-- Basket body -->
+                        <path d="M80 100 L70 220 Q70 240 100 240 L200 240 Q230 240 230 220 L220 100 Z" fill="url(#bamboo1)" stroke="#5D4037" stroke-width="2"/>
+                        <!-- Basket rim -->
+                        <ellipse cx="150" cy="100" rx="70" ry="15" fill="#8B6F47" stroke="#5D4037" stroke-width="2"/>
+                        <ellipse cx="150" cy="100" rx="65" ry="12" fill="#D4A017"/>
+                        <!-- Weave pattern detail -->
+                        <g stroke="#5D4037" stroke-width="0.5" opacity="0.5">
+                            <path d="M85 120 L215 120"/>
+                            <path d="M82 140 L218 140"/>
+                            <path d="M78 160 L222 160"/>
+                            <path d="M75 180 L225 180"/>
+                            <path d="M73 200 L227 200"/>
+                            <path d="M72 220 L228 220"/>
+                        </g>
+                        <!-- Handle -->
+                        <path d="M100 100 Q100 60 150 60 Q200 60 200 100" stroke="#5D4037" stroke-width="5" fill="none" stroke-linecap="round"/>
+                        <path d="M100 100 Q100 63 150 63 Q200 63 200 100" stroke="#8B6F47" stroke-width="2" fill="none" stroke-linecap="round"/>
+                        <!-- Bamboo leaves decoration -->
+                        <g transform="translate(220,140)">
+                            <path d="M0 0 Q-10 -5 -15 -15 Q-5 -10 0 -5 Q5 -10 15 -15 Q10 -5 0 0 Z" fill="#2F5233"/>
+                            <path d="M0 0 Q-8 8 -12 18 Q-3 12 0 8 Q3 12 12 18 Q8 8 0 0 Z" fill="#4A7C4E"/>
+                        </g>
+                        <ellipse cx="150" cy="255" rx="80" ry="5" fill="rgba(62,39,35,0.15)"/>
+                    </svg>
+                </div>
+                <div class="product-info">
+                    <div class="product-cat">Anyaman · Mojokerto</div>
+                    <h3>Keranjang Bambu Anyam</h3>
+                    <p class="desc">Keranjang bambu anyam tradisional dari Mojokerto, kuat dan ramah lingkungan.</p>
+                    <div class="product-bottom">
+                        <div class="product-price"><span class="currency">Rp</span> 165.000</div>
+                        <button class="product-buy"><i class="ri-shopping-bag-line"></i> Beli</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- REGIONS -->
+    <section class="section regions" id="wilayah">
+        <div class="section-head reveal">
+            <div class="section-tag">Peta Sebaran</div>
+            <h2>Sentra Kerajinan <span class="accent">Jawa Timur</span></h2>
+            <p>Setiap daerah di Jawa Timur memiliki kekhasan kerajinan tangan yang berbeda dan unik</p>
+        </div>
+        <div class="regions-grid">
+            <div class="map-container reveal">
+                <!-- SVG Peta Jawa Timur -->
+                <svg viewBox="0 0 500 300" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                        <linearGradient id="mapGrad" x1="0" y1="0" x2="1" y2="1">
+                            <stop offset="0%" stop-color="#D4A017" stop-opacity="0.3"/>
+                            <stop offset="100%" stop-color="#8B2635" stop-opacity="0.3"/>
+                        </linearGradient>
+                    </defs>
+                    <!-- Simplified East Java map shape -->
+                    <path d="M50 150 Q40 120 70 100 Q100 80 140 85 Q180 75 220 90 Q260 80 300 95 Q340 90 380 100 Q420 110 450 130 Q470 150 460 170 Q440 190 400 195 Q360 205 320 200 Q280 210 240 200 Q200 210 160 200 Q120 205 80 195 Q55 185 50 150 Z" fill="url(#mapGrad)" stroke="#F4C430" stroke-width="2"/>
+                    <!-- Madura island -->
+                    <path d="M380 70 Q400 65 420 70 Q430 80 420 90 Q400 95 380 90 Q370 80 380 70 Z" fill="url(#mapGrad)" stroke="#F4C430" stroke-width="2"/>
+                    <!-- City markers -->
+                    <g>
+                        <!-- Surabaya -->
+                        <circle cx="320" cy="120" r="8" fill="#8B2635" stroke="#F4C430" stroke-width="2"/>
+                        <text x="320" y="105" text-anchor="middle" fill="#FAF3E7" font-size="10" font-weight="600">Surabaya</text>
+                        <!-- Malang -->
+                        <circle cx="250" cy="170" r="8" fill="#8B2635" stroke="#F4C430" stroke-width="2"/>
+                        <text x="250" y="195" text-anchor="middle" fill="#FAF3E7" font-size="10" font-weight="600">Malang</text>
+                        <!-- Madura -->
+                        <circle cx="400" cy="80" r="8" fill="#8B2635" stroke="#F4C430" stroke-width="2"/>
+                        <text x="400" y="60" text-anchor="middle" fill="#FAF3E7" font-size="10" font-weight="600">Madura</text>
+                        <!-- Tulungagung -->
+                        <circle cx="180" cy="180" r="8" fill="#8B2635" stroke="#F4C430" stroke-width="2"/>
+                        <text x="180" y="205" text-anchor="middle" fill="#FAF3E7" font-size="10" font-weight="600">Tulungagung</text>
+                        <!-- Lumajang -->
+                        <circle cx="290" cy="190" r="8" fill="#8B2635" stroke="#F4C430" stroke-width="2"/>
+                        <text x="290" y="215" text-anchor="middle" fill="#FAF3E7" font-size="10" font-weight="600">Lumajang</text>
+                        <!-- Mojokerto -->
+                        <circle cx="220" cy="120" r="8" fill="#8B2635" stroke="#F4C430" stroke-width="2"/>
+                        <text x="220" y="105" text-anchor="middle" fill="#FAF3E7" font-size="10" font-weight="600">Mojokerto</text>
+                        <!-- Blitar -->
+                        <circle cx="150" cy="160" r="8" fill="#8B2635" stroke="#F4C430" stroke-width="2"/>
+                        <text x="150" y="145" text-anchor="middle" fill="#FAF3E7" font-size="10" font-weight="600">Blitar</text>
+                        <!-- Banyuwangi -->
+                        <circle cx="80" cy="150" r="8" fill="#8B2635" stroke="#F4C430" stroke-width="2"/>
+                        <text x="80" y="135" text-anchor="middle" fill="#FAF3E7" font-size="10" font-weight="600">Banyuwangi</text>
+                    </g>
+                    <!-- Title -->
+                    <text x="250" y="30" text-anchor="middle" fill="#F4C430" font-family="Playfair Display, serif" font-size="16" font-weight="700" font-style="italic">Provinsi Jawa Timur</text>
+                    <text x="250" y="270" text-anchor="middle" fill="rgba(250,243,231,0.6)" font-size="10">Peta Sebaran Sentra Kerajinan</text>
+                </svg>
+            </div>
+            <div class="regions-list reveal">
+                <div class="region-item">
+                    <div class="city">Madura</div>
+                    <div class="craft">Batik Tulis Warna-warni</div>
+                </div>
+                <div class="region-item">
+                    <div class="city">Malang</div>
+                    <div class="craft">Topeng Malangan & Keramik Dinoyo</div>
+                </div>
+                <div class="region-item">
+                    <div class="city">Lumajang</div>
+                    <div class="craft">Anyaman Rotan Halus</div>
+                </div>
+                <div class="region-item">
+                    <div class="city">Tulungagung</div>
+                    <div class="craft">Bordir Tasbi & Marmer</div>
+                </div>
+                <div class="region-item">
+                    <div class="city">Mojokerto</div>
+                    <div class="craft">Kerajinan Bambu Anyam</div>
+                </div>
+                <div class="region-item">
+                    <div class="city">Surabaya</div>
+                    <div class="craft">Wayang Kulit & Tembaga</div>
+                </div>
+                <div class="region-item">
+                    <div class="city">Blitar</div>
+                    <div class="craft">Ukiran Kayu Jati</div>
+                </div>
+                <div class="region-item">
+                    <div class="city">Banyuwangi</div>
+                    <div class="craft">Kerajinan Enceng Gondok</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PROCESS -->
+    <section class="section process">
+        <div class="section-head reveal">
+            <div class="section-tag">Proses Kami</div>
+            <h2>Dari <span class="accent">Tangan Pengrajin</span> ke Rumah Anda</h2>
+            <p>Setiap produk melalui proses kurasi ketat untuk memastikan kualitas dan keasliannya</p>
+        </div>
+        <div class="process-grid">
+            <div class="process-step reveal">
+                <div class="step-num">01</div>
+                <div class="step-icon"><i class="ri-search-line"></i></div>
+                <h3>Kurasi</h3>
+                <p>Kami mengunjungi langsung pengrajin di pelosok Jawa Timur untuk menemukan karya terbaik.</p>
+            </div>
+            <div class="process-step reveal">
+                <div class="step-num">02</div>
+                <div class="step-icon"><i class="ri-hand-heart-line"></i></div>
+                <h3>Pembuatan</h3>
+                <p>Setiap karya dibuat dengan tangan, penuh kesabaran dan keahlian turun-temurun.</p>
+            </div>
+            <div class="process-step reveal">
+                <div class="step-num">03</div>
+                <div class="step-icon"><i class="ri-shield-check-line"></i></div>
+                <h3>Quality Check</h3>
+                <p>Tim kami memeriksa setiap detail untuk memastikan kualitas dan keaslian produk.</p>
+            </div>
+            <div class="process-step reveal">
+                <div class="step-num">04</div>
+                <div class="step-icon"><i class="ri-gift-line"></i></div>
+                <h3>Pengiriman</h3>
+                <p>Dikemas dengan cinta dalam packaging ramah lingkungan, sampai ke tangan Anda.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- TESTIMONIALS -->
+    <section class="section testimonials" id="testimoni">
+        <div class="section-head reveal">
+            <div class="section-tag">Testimoni</div>
+            <h2>Kata Mereka yang <span class="accent">Mencintai</span> Karya Kami</h2>
+            <p>Cerita dari pelanggan setia yang telah merasakan keindahan karya tangan Jawa Timur</p>
+        </div>
+        <div class="testi-grid">
+            <div class="testi-card reveal">
+                <div class="testi-quote">"</div>
+                <div class="testi-stars">
+                    <i class="ri-star-fill"></i><i class="ri-star-fill"></i><i class="ri-star-fill"></i><i class="ri-star-fill"></i><i class="ri-star-fill"></i>
+                </div>
+                <p>Batik Maduranya cantik banget! Warnanya cerah dan detailnya halus. Terasa sekali handmade-nya. Sekarang jadi koleksi favorit saya.</p>
+                <div class="testi-author">
+                    <div class="testi-avatar avatar-1">AP</div>
+                    <div class="testi-author-info">
+                        <h4>Anindita Putri</h4>
+                        <span>Jakarta</span>
+                    </div>
+                </div>
+            </div>
+            <div class="testi-card reveal">
+                <div class="testi-quote">"</div>
+                <div class="testi-stars">
+                    <i class="ri-star-fill"></i><i class="ri-star-fill"></i><i class="ri-star-fill"></i><i class="ri-star-fill"></i><i class="ri-star-fill"></i>
+                </div>
+                <p>Topeng Malangannya luar biasa! Ukirannya detail dan warnanya cantik. Saya beli untuk dekorasi rumah, tamu-tamu selalu kagum.</p>
+                <div class="testi-author">
+                    <div class="testi-avatar avatar-2">RS</div>
+                    <div class="testi-author-info">
+                        <h4>Rizky Santoso</h4>
+                        <span>Surabaya</span>
+                    </div>
+                </div>
+            </div>
+            <div class="testi-card reveal">
+                <div class="testi-quote">"</div>
+                <div class="testi-stars">
+                    <i class="ri-star-fill"></i><i class="ri-star-fill"></i><i class="ri-star-fill"></i><i class="ri-star-fill"></i><i class="ri-star-fill"></i>
+                </div>
+                <p>Saya senang bisa mendukung pengrajin lokal lewat KriyaJatim. Kualitas produknya premium dan cerita di balik setiap karya bikin makin spesial.</p>
+                <div class="testi-author">
+                    <div class="testi-avatar avatar-3">ML</div>
+                    <div class="testi-author-info">
+                        <h4>Maya Lestari</h4>
+                        <span>Bandung</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta-section" id="kontak">
+        <div class="cta-box reveal">
+            <h2>Dapatkan Karya <span class="italic">Autentik</span> Jawa Timur</h2>
+            <p>Berlangganan newsletter kami untuk update koleksi terbaru, cerita pengrajin, dan penawaran eksklusif.</p>
+            <form class="newsletter" onsubmit="handleSubscribe(event)" style="display: flex; max-width: 480px; margin: 0 auto; background: var(--white); border-radius: 50px; padding: 0.4rem; position: relative; z-index: 2;">
+                <input type="email" placeholder="Email Anda..." required style="flex: 1; border: none; background: transparent; padding: 0.9rem 1.5rem; font-size: 0.95rem; outline: none; font-family: 'Inter', sans-serif; color: var(--brown);">
+                <button type="submit" style="background: var(--brown); color: var(--white); border: none; padding: 0.9rem 1.8rem; border-radius: 50px; font-weight: 600; cursor: pointer; transition: all 0.3s; font-family: 'Inter', sans-serif; font-size: 0.9rem;">Berlangganan</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <a href="#" class="logo">
+                    <div class="logo-icon"><i class="ri-leaf-fill"></i></div>
+                    <div class="logo-text">
+                        Kriya<span style="color: var(--primary); font-style: italic;">Jatim</span>
+                        <div class="sub" style="color: var(--secondary);">Jawa Timur</div>
+                    </div>
+                </a>
+                <p>Melestarikan warisan kriya Jawa Timur. Platform kerajinan tangan autentik dari pengrajin terbaik di berbagai kabupaten Jawa Timur.</p>
+                <div class="footer-social">
+                    <a href="#"><i class="ri-instagram-line"></i></a>
+                    <a href="#"><i class="ri-tiktok-line"></i></a>
+                    <a href="#"><i class="ri-facebook-fill"></i></a>
+                    <a href="#"><i class="ri-whatsapp-line"></i></a>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h4>Jelajahi</h4>
+                <ul>
+                    <li><a href="#beranda">Beranda</a></li>
+                    <li><a href="#tentang">Tentang Kami</a></li>
+                    <li><a href="#produk">Koleksi</a></li>
+                    <li><a href="#wilayah">Wilayah</a></li>
+                    <li><a href="#testimoni">Testimoni</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Kategori</h4>
+                <ul>
+                    <li><a href="#">Tekstil</a></li>
+                    <li><a href="#">Kayu & Ukir</a></li>
+                    <li><a href="#">Anyaman</a></li>
+                    <li><a href="#">Keramik</a></li>
+                    <li><a href="#">Tradisional</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Kontak</h4>
+                <ul>
+                    <li><a href="#"><i class="ri-map-pin-line"></i> Surabaya, Jawa Timur</a></li>
+                    <li><a href="#"><i class="ri-mail-line"></i> hello@kryajatim.id</a></li>
+                    <li><a href="#"><i class="ri-phone-line"></i> +62 812 3456 7890</a></li>
+                    <li><a href="#"><i class="ri-time-line"></i> Senin - Sabtu, 09.00 - 17.00</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 KriyaJatim. Dibuat dengan <i class="ri-heart-fill" style="color: #8B2635;"></i> di Jawa Timur.</p>
+            <p><a href="#">Privasi</a> · <a href="#">Syarat</a> · <a href="#">FAQ</a></p>
+        </div>
+    </footer>
+
+    <script>
+        // Navbar scroll
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            navbar.classList.toggle('scrolled', window.scrollY > 50);
+        });
+
+        // Hamburger
+        const hamburger = document.getElementById('hamburger');
+        const navLinks = document.getElementById('navLinks');
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            navLinks.classList.toggle('active');
+        });
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                hamburger.classList.remove('active');
+                navLinks.classList.remove('active');
+            });
+        });
+
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    e.preventDefault();
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+
+        // Reveal on scroll
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                    revealObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+        document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+        // Product filter
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const productCards = document.querySelectorAll('.product-card');
+
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                filterBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                const filter = btn.dataset.filter;
+
+                productCards.forEach(card => {
+                    if (filter === 'all' || card.dataset.category === filter) {
+                        card.style.display = 'block';
+                        setTimeout(() => {
+                            card.style.opacity = '1';
+                            card.style.transform = 'translateY(0)';
+                        }, 50);
+                    } else {
+                        card.style.opacity = '0';
+                        card.style.transform = 'translateY(20px)';
+                        setTimeout(() => card.style.display = 'none', 300);
+                    }
+                });
+            });
+        });
+
+        // Wishlist toggle
+        document.querySelectorAll('.product-wishlist').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                btn.classList.toggle('active');
+                const icon = btn.querySelector('i');
+                if (btn.classList.contains('active')) {
+                    icon.className = 'ri-heart-fill';
+                } else {
+                    icon.className = 'ri-heart-line';
+                }
+            });
+        });
+
+        // Buy button animation
+        document.querySelectorAll('.product-buy').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                const originalHTML = btn.innerHTML;
+                btn.innerHTML = '<i class="ri-check-line"></i> Ditambahkan';
+                btn.style.background = 'var(--accent)';
+                setTimeout(() => {
+                    btn.innerHTML = originalHTML;
+                    btn.style.background = '';
+                }, 1500);
+            });
+        });
+
+        // Newsletter
+        function handleSubscribe(e) {
+            e.preventDefault();
+            const input = e.target.querySelector('input');
+            const btn = e.target.querySelector('button');
+            const originalText = btn.textContent;
+            btn.textContent = '✓ Terima kasih!';
+            btn.style.background = 'var(--accent)';
+            input.value = '';
+            setTimeout(() => {
+                btn.textContent = originalText;
+                btn.style.background = '';
+            }, 2500);
+        }
+
+        // Parallax on hero visual
+        const heroMainImg = document.querySelector('.hero-main-img');
+        window.addEventListener('mousemove', (e) => {
+            if (window.innerWidth < 1024) return;
+            const x = (e.clientX / window.innerWidth - 0.5) * 15;
+            const y = (e.clientY / window.innerHeight - 0.5) * 15;
+            if (heroMainImg) {
+                heroMainImg.style.transform = `translate(calc(-50% + ${x}px), calc(-50% + ${y}px))`;
+            }
+        });
+    </script>
+</body>
+</html>
